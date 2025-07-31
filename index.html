@@ -56,25 +56,19 @@
 
         /* Rest of your styles */
 
-        .sol-rain img {
-    position: absolute;
-    opacity: 0.7; /* Higher base visibility */
-    filter: drop-shadow(0 0 8px #39ff14) drop-shadow(0 0 12px #39ff14); /* Double glow */
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-
-            .sol-rain img {
-    position: absolute;
-    width: 36px; /* slightly larger for visibility */
-    height: 36px;
-    opacity: 0.3; /* increased visibility */
-    filter: drop-shadow(0 0 8px #39ff14) blur(0.5px); /* brighter glow + subtle blur */
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.sol-rain img {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px #39ff14)
+          drop-shadow(0 0 10px #39ff14)
+          drop-shadow(0 0 20px #39ff14)
+          brightness(1.4);
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 3;
 }
 
         @keyframes fall {
@@ -388,12 +382,12 @@
                 const drop = document.createElement("img");
                 drop.src = solIcon;
                 drop.style.left = (i * (100 / maxDrops)) + "vw";
-                drop.style.top = "-50px";
+                drop.style.top = "-100px";
 
                 // Each drop falls between 10-16 seconds, random delay to avoid uniform fall
                 drop.style.animationDuration = (Math.random() * 6 + 10) + "s";
                 drop.style.animationDelay = (Math.random() * 10) + "s";
-                drop.style.opacity = "0.1";
+                drop.style.opacity = "1";
                 drop.style.pointerEvents = "none";
                 drop.style.position = "absolute";
                 drop.style.width = (28 + Math.random() * 12) + "px"; // Between 28–40px
