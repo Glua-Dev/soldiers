@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SOLDIERS | Solana Alpha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        /* DARKER WAR THEME BACKGROUND with subtle camo pattern animation */
+        body {
+            overflow-x: hidden;
+            background: #070707;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        /* Neon green glow for all h2 subtitles */
+        h2 {
+            color: #39ff14;
+            text-shadow: 0 0 3px #39ff14, 0 0 6px #2ecc40;
+        }
+
+
+
+
+            /* Animated subtle camo pattern using multiple linear gradients */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: none;
+                background: repeating-linear-gradient(45deg, #0a0a0a, #0a0a0a 10px, #121212 10px, #121212 20px), repeating-linear-gradient(-45deg, #121212, #121212 10px, #1c1c1c 10px, #1c1c1c 20px), repeating-linear-gradient(90deg, #0f0f0f, #0f0f0f 5px, #151515 5px, #151515 15px);
+                background-size: 200% 200%;
+                animation: camoShift 40s linear infinite;
+                z-index: 0;
+                opacity: 0.2;
+                mix-blend-mode: multiply;
+            }
+
+        @keyframes camoShift {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+
+        /* Rest of your styles */
+
+        .sol-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0; /* behind all content */
+            overflow: hidden;
+        }
+
+            .sol-rain img {
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                opacity: 0.1;
+                filter: drop-shadow(0 0 5px #39ff14);
+                animation-name: fall;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% {
+                box-shadow: 0 0 10px 2px rgba(57, 255, 20, 0.4);
+                border-color: #2ecc40;
+            }
+
+            50% {
+                box-shadow: 0 0 15px 4px rgba(57, 255, 20, 0.6);
+                border-color: #39ff14;
+            }
+        }
+
+        .animate-pulse-subtle {
+            animation: pulse-subtle 5s ease-in-out infinite;
+        }
+
+        #what-we-offer {
+            opacity: 0;
+            transform: translateY(2.5rem);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            background-color: #121212cc;
+            border: 2px solid #39ff14;
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(57,255,20,0.4);
+            margin-bottom: 3rem;
+            color: #d0d0d0;
+        }
+
+            #what-we-offer.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* ===== Vouches slider styles ===== */
+        .full-width-slider {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 250px; /* taller for bigger images */
+            margin: 0 auto 3rem;
+            z-index: 1;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc((360px) * 16); /* 300px width + 60px margin-right times 16 items */
+            animation: scroll-left 120s linear infinite;
+        }
+
+        .vouch-container {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 60px;
+        }
+
+        .vouch-box {
+            width: 300px;
+            height: 225px;
+            border: 2px solid #39ff14;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+            background-color: #121212;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .vouch-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(57, 255, 20, 0.7);
+            }
+
+        .vouch-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50%));
+            }
+        }
+
+
+
+        /* Other text colors */
+        h1.glow {
+            text-shadow: 0 0 15px #39ff14;
+        }
+
+        /* Typography */
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Base button style for both buttons */
+        a.button-neon {
+            background: linear-gradient(135deg, #2ecc40, #39ff14);
+            color: black;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 8px #39ff14, 0 0 20px #2ecc40, inset 0 0 8px #39ff14;
+            text-shadow: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+            display: inline-block;
+            user-select: none;
+        }
+
+            /* Hover/focus effect for button glow and scale */
+            a.button-neon:hover,
+            a.button-neon:focus {
+                background: linear-gradient(135deg, #39ff14, #2ecc40);
+                box-shadow: 0 0 15px #39ff14, 0 0 30px #2ecc40, inset 0 0 15px #39ff14;
+                transform: scale(1.08);
+                outline: none;
+            }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Solana Rain -->
+    <div class="sol-rain pointer-events-none z-50"></div>
+
+    <!-- Hero -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6" style="position: relative; z-index: 2;">
+        <h1 class="text-6xl md:text-8xl font-extrabold text-green-400 glow">SOLDIERS</h1>
+        <p class="mt-4 text-xl text-gray-400 max-w-xl">
+            The most ruthless Solana alpha group. You either win with us, or you watch from the sidelines.
+        </p>
+        <a href="https://discord.gg/soldierscc" class="button-neon mt-8">
+            Join the Ranks
+        </a>
+
+    </section>
+
+    <!-- What We Offer Section -->
+    <section id="what-we-offer" class="max-w-6xl mx-auto my-20 px-6 font-poppins animate-pulse-subtle">
+        <h2 class="neon-subtitle text-4xl font-semibold mb-8 text-center tracking-wide uppercase">
+            What We Offer
+        </h2>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-10 text-gray-300 text-lg leading-relaxed">
+            <li>Exclusive daily Solana memecoin alpha and trade signals.</li>
+            <li>Real-time alerts on large Solana memecoin token dumps.</li>
+            <li>Early access to newly launched Solana memecoins.</li>
+            <li>On-chain whale wallet tracking for Solana memecoin moves.</li>
+            <li>Proprietary memecoin market trend algorithms.</li>
+            <li>Community-driven Solana memecoin project deep dives.</li>
+            <li>Exclusive chat channels for memecoin pump & dump insights.</li>
+            <li>Risk analysis and exit strategy guides for memecoin trading.</li>
+            <li>Access to verified memecoin token presales and launches.</li>
+            <li>Automated memecoin price anomaly detection alerts.</li>
+            <li>Weekly memecoin market recaps and alpha reports.</li>
+            <li>Exclusive memecoin token wallet monitoring tools.</li>
+            <li>Real-time Discord alerts for Solana memecoin hype spikes.</li>
+            <li>Access to memecoin liquidity pool movement tracking.</li>
+            <li>Custom memecoin portfolio tracking dashboards.</li>
+            <li>Memecoin contract audit summaries and flags.</li>
+            <li>Curated list of memecoin token burn and mint events.</li>
+            <li>Dedicated channels for memecoin tokenomics discussions.</li>
+            <li>Alert system for suspicious memecoin contract interactions.</li>
+            <li>Solana memecoin swap and liquidity strategies.</li>
+            <li>Early warnings on rugpull and scam memecoin behavior.</li>
+            <li>Memecoin market cap and volume alerts.</li>
+            <li>Exclusive memecoin trading signal groups with vetted analysts.</li>
+            <li>Daily memecoin hype cycle analysis and sentiment tracking.</li>
+            <li>Access to advanced memecoin chart patterns and indicators.</li>
+            <li>Collaboration and alpha sharing with other Solana memecoin traders.</li>
+            <li>And much more dedicated Solana memecoin alpha...</li>
+        </ul>
+    </section>
+
+    <!-- Loved by Many / Horizontal Slider Images -->
+    <section class="text-center py-16" style="position: relative; z-index: 2;">
+        <h2 class="text-3xl font-bold mb-2 text-green-300">Loved by Many</h2>
+        <p class="text-sm text-gray-400 mb-10">Serving since '25</p>
+
+        <div class="full-width-slider">
+            <div class="slider-track">
+                <!-- Original 6 Images -->
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image1.png" class="vouch-img" alt="Vouch 1" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image2.png" class="vouch-img" alt="Vouch 2" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image3.png" class="vouch-img" alt="Vouch 3" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image4.png" class="vouch-img" alt="Vouch 4" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image5.png" class="vouch-img" alt="Vouch 5" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image6.png" class="vouch-img" alt="Vouch 6" />
+                    </div>
+                </div>
+
+                <!-- Duplicate 6 Images + 2 Extra for Seamless Loop -->
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image1.png" class="vouch-img" alt="Vouch 1" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image2.png" class="vouch-img" alt="Vouch 2" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image3.png" class="vouch-img" alt="Vouch 3" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image4.png" class="vouch-img" alt="Vouch 4" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image5.png" class="vouch-img" alt="Vouch 5" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image6.png" class="vouch-img" alt="Vouch 6" />
+                    </div>
+                </div>
+                <!-- Extra 2 images to prevent gap -->
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image1.png" class="vouch-img" alt="Vouch 1" />
+                    </div>
+                </div>
+                <div class="vouch-container">
+                    <div class="vouch-box">
+                        <img src="images/image2.png" class="vouch-img" alt="Vouch 2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="px-6 py-20 max-w-3xl mx-auto text-center" tabindex="-1" style="position: relative; z-index: 2;">
+        <h2 class="neon-subtitle text-5xl font-extrabold mb-4 tracking-wide glow">
+            Join the Ranks
+        </h2>
+
+        <p class="mt-4 text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
+            Ready to access the most ruthless Solana memecoin alpha group? This is your battlefield. No bots. No delays. Just pure, unfiltered insider intel — straight to you, instantly.
+        </p>
+        <a href="https://discord.gg/soldierscc" class="button-neon mt-8">
+            Enter the War Room Now
+        </a>
+
+    </section>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const solContainer = document.querySelector(".sol-rain");
+            const solIcon = "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png";
+            const maxDrops = 30;
+
+            for (let i = 0; i < maxDrops; i++) {
+                const drop = document.createElement("img");
+                drop.src = solIcon;
+                drop.style.left = (i * (100 / maxDrops)) + "vw";
+                drop.style.top = "-50px";
+
+                // Each drop falls between 10-16 seconds, random delay to avoid uniform fall
+                drop.style.animationDuration = (Math.random() * 6 + 10) + "s";
+                drop.style.animationDelay = (Math.random() * 10) + "s";
+                drop.style.opacity = "0.1";
+                drop.style.pointerEvents = "none";
+                drop.style.position = "absolute";
+                drop.style.width = "24px";
+                drop.style.height = "24px";
+
+                solContainer.appendChild(drop);
+                void drop.offsetWidth;
+                drop.style.animationName = "fall";
+            }
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const section = document.getElementById('what-we-offer');
+            function revealOnScroll() {
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (rect.top < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                    window.removeEventListener('scroll', revealOnScroll);
+                }
+            }
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
+</body>
+</html>
