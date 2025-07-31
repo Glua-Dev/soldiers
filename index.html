@@ -68,15 +68,15 @@
         }
 
             .sol-rain img {
-                position: absolute;
-                width: 24px;
-                height: 24px;
-                opacity: 0.1;
-                filter: drop-shadow(0 0 5px #39ff14);
-                animation-name: fall;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-            }
+    position: absolute;
+    width: 36px; /* slightly larger for visibility */
+    height: 36px;
+    opacity: 0.3; /* increased visibility */
+    filter: drop-shadow(0 0 8px #39ff14) blur(0.5px); /* brighter glow + subtle blur */
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
 
         @keyframes fall {
             0% {
